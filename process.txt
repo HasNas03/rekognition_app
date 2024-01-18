@@ -1,0 +1,32 @@
+"Backend"
+
+1. We will input all base images
+
+2. they will be uploaded to an s3 bucket
+
+3. (registration) uploading will trigger a registration lambda function, which will index the image using AWS rekognition, which will
+generate a unique key, and we will save that key as an id alongside full name in dynamodb
+
+"Authentication Flow"
+
+4. input a picture
+
+5. call the api gateway to upload the picture to an s3 bucket
+
+6. that will call an auth lambda function which will get the image from s3, then call rekognition, which will
+use same algo as before to index image, and check if that image is in dynamodb, if so return details
+
+
+
+His -> Mine
+s3 bucket: jinmeister-employee-image-storage -> central-image-bucket
+s3 bucket: jinmeister-visitor-image-storage  -> input-pic-bucket
+
+lambda function: employee-registratin -> facial-registration
+
+dynamodb table name: employee -> rekogdb
+dynamodb table partition key: rekognitionId
+
+CollectionId: employees -> faces
+
+lambda function: employee-authentication -> facial_authentication
