@@ -12,6 +12,7 @@ function App() {
   function sendImage(e){
     e.preventDefault();
     const visitorImageName = uuid.v4();
+
     fetch(`https://04zc8qo7og.execute-api.us-east-1.amazonaws.com/dev/input-pic-bucket/${visitorImageName}.jpeg`,
     {
       method: 'PUT',
@@ -33,7 +34,7 @@ function App() {
       }
     }).catch(error => {
       setAuth(false);
-      setuploadResultMessage('Auth error');
+      setuploadResultMessage('Auth error (check App)');
       console.error(error);
     })
   }
@@ -57,13 +58,55 @@ function App() {
     }).catch(error => console.error(error));
   }
   
+  // New function to handle central S3 bucket upload
+  function uploadToCentralS3(e) {
+    e.preventDefault();
+    const centralImageName = image.name;
+
+    fetch(`https://04zc8qo7og.execute-api.us-east-1.amazonaws.com/dev/central-image-bucket/${centralImageName}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'image/jpeg'
+      },
+      body: image
+    })
+      .then(() => {
+        setuploadResultMessage('Image uploaded to Central S3 bucket successfully');
+        console.log("uploaded");
+      })
+      .catch(error => {
+        setuploadResultMessage('Error uploading image to Central S3 bucket');
+        console.error(error);
+      });
+  }
+  // New input change handler to set the selected image for both functions
+  function handleImageChange(e) {
+    setImage(e.target.files[0]);
+  }
+
+
+
+
+
+
+
+
+
   return (
     <div className="App">
-      <h2> My Rekog App</h2>
+      <h2 className='title'> My Rekog App</h2>
       <form onSubmit={sendImage}>
-        <input type='file' name='image' onChange={e => setImage(e.target.files[0])} />
-        <button className='button' type='submit'> Authenticate </button>
+        <input type='file' name='image' onChange={handleImageChange} />
+        <button className='button' type='submit'> Authenticate Image </button>
       </form>
+      <br></br>
+      
+      {/* Button to upload image to 'central' S3 bucket */}
+      <form onSubmit={uploadToCentralS3}>
+        <input type='file' name='centralImage' onChange={handleImageChange} />
+        <button className='button' type='submit'> Upload to Central S3 </button>
+      </form>
+
       <div className={isAuth ? 'success' : 'failure'}> {uploadResultMessage} </div>
       <img
         src={image ? URL.createObjectURL(image) : defaultImageSource}
@@ -72,7 +115,6 @@ function App() {
         width={350}
         className='image'
       />
-      {/*<img src={visitorName} alt="Visitor" height={350} width={350} className='image'/>*/}
     </div>
   );
 }

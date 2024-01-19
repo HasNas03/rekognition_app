@@ -1,26 +1,53 @@
+* {
+  background-color: rgb(22,69,85);
+}
+
 .App{
   margin-top: 2rem;
   text-align: center;
 }
 
-.success{
-  padding: 1rem;
-  color: green;
+.title{
+  color: white;
+  font-size: 40px;
 }
-
-.failure{
+.message {
+  color: white; /* Set the default color to white */
+}
+.success{
+  background-color: rgb(34,125,155);
   padding: 1rem;
-  color: red;
+  color: rgb(42,187,127);
+  font-weight: 600;
+  margin: 0 500px;
+  border-radius: 10px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+.failure{
+  background-color: rgb(34,125,155);
+  padding: 1rem;
+  color: rgb(241,91,80);
+  margin: 0 500px;
+  border-radius: 10px;
+  margin-top: 20px;
+  margin-bottom: 10px;
 }
 
 .button{
   height: 30px;
   border-radius: 5px;
   color: white;
-  background-color: rgb(12,102,228);
+  background-color: rgb(205,81,157);
+}
+
+.add{
+  background-color: rgb(42,187,127);
+  height: 30px;
+  border-radius: 5px;
+  color: white;
 }
 
 .image{
-  border-radius: 10px;
-  
+  border-radius: 10px; 
 }
