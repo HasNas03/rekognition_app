@@ -5,15 +5,15 @@ const uuid = require('uuid');
 function App() {
 
   const [image, setImage] = useState('');
-  const [uploadResultMessage, setuploadResultMessage] = useState('Please upload an image');
-  const [visitorName, setVisitorName] = useState('holder.jpg');
-  const [isAuth, setAuth] = useState(false);
+  const [uploadResultMessage, setuploadResultMessage] = useState('Upload an authentication image');
+  const [visitorName, setVisitorName] = useState('icon.png');
+  const [isAuth, setAuth] = useState('false');
 
   function sendImage(e){
     e.preventDefault();
     setVisitorName(image.name);
     const visitorImageName = uuid.v4();
-    fetch(`https://84jj24znrk.execute-api.ca-central-1.amazonaws.com/dev/input-pic-bucket/${visitorImageName}.jpeg`,
+    fetch(`https://04zc8qo7og.execute-api.us-east-1.amazonaws.com/dev/input-pic-bucket/${visitorImageName}.jpeg`,
     {
       method: 'PUT',
       headers:{
@@ -22,35 +22,40 @@ function App() {
       body:image
     }).then(async () => {
       const response = await authenticate(visitorImageName);
+      // if face matched
       if (response.Message === 'Success'){
         setAuth(true);
-        setuploadResultMessage(`Hi ${response['firstName']} ${response['lastName']}, welcome`)
+        setuploadResultMessage(`Facial Authenticaion successful, welcome ${response['firstName']} ${response['lastName']}`)
       } 
+      // if face not matched
       else{
         setAuth(false);
-        setuploadResultMessage('Authentication failed')
+        setuploadResultMessage('Facial Authentication failed')
       }
     }).catch(error => {
       setAuth(false);
-      setuploadResultMessage('Auth error')
+      setuploadResultMessage('Auth error');
       console.error(error);
     })
   }
 
-  async function authenticate(visitorImageName){
-    const requestUrl = 'https://84jj24znrk.execute-api.ca-central-1.amazonaws.com/dev/employee?' + URLSearchParams({
+  async function authenticate(visitorImageName) {
+    const params = new URLSearchParams({
       objectKey: `${visitorImageName}.jpeg`
     });
+  
+    const requestUrl = `https://04zc8qo7og.execute-api.us-east-1.amazonaws.com/dev/employee?${params.toString()}`;
+  
     return await fetch(requestUrl, {
       method: 'GET',
-      headers:{
+      headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       }
     }).then(response => response.json())
     .then((data) => {
       return data;
-    }).catch(error => console.error(error))
+    }).catch(error => console.error(error));
   }
   
   return (
@@ -58,10 +63,10 @@ function App() {
       <h2> Rekog App</h2>
       <form onSubmit={sendImage}>
         <input type='file' name='image' onChange={e => setImage(e.target.files[0])} />
-        <button type='submit'> Authenticate </button>
+        <button className='button' type='submit'> Authenticate </button>
       </form>
       <div className={isAuth ? 'success' : 'failure'}> {uploadResultMessage} </div>
-      <img src={require(`./visitors/${visitorName}`)} alt="Visitor" height={250} width={250}/>
+      <img src={require(`./visitors/${visitorName}`)} alt="Visitor" height={350} width={350} className='image'/>
     </div>
   );
 }
