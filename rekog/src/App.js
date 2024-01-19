@@ -59,7 +59,7 @@ function App() {
   
   return (
     <div className="App">
-      <h2> Rekog App</h2>
+      <h2> My Rekog App</h2>
       <form onSubmit={sendImage}>
         <input type='file' name='image' onChange={e => setImage(e.target.files[0])} />
         <button className='button' type='submit'> Authenticate </button>
