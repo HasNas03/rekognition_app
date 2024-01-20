@@ -77,6 +77,11 @@
   width: 50px; /* Adjust the width of the icon as needed */
   height: 50px; /* Adjust the height of the icon as needed */
   padding-top: 1rem;
+  transition: .3s ease-out;
+}
+.icon:hover{
+  background-color: rgb(29, 97, 120);
+  transition: .5s ease;
 }
 
 .icon2 {
@@ -84,9 +89,19 @@
   height: auto; /* Adjust the height of the icon as needed */
   color: white;
   text-align: left;
-  border: 2px solid rgb(22,69,85);
+  border: 2px solid rgb(25, 139, 177);
   border-radius: 7px;
   background-color: rgb(22,69,85);
   padding: 5px;
   margin-top: 5px;
+  transition: .3s ease-out;
+}
+.icon2:hover{
+  background-color: rgb(29, 97, 120);
+  transition: .5s ease;
+}
+
+.bold{
+  background-color: transparent;
+  color: rgb(42,187,127);
 }

@@ -93,15 +93,15 @@ function App() {
     <div className="App">
       <div className="icon-container">
         <img src={info} alt="Icon" className="icon" />
-        <p className='icon2'>Authenticate Image: <br/><br/>Upload an image from your computer to be facially authenticated. If it is in the database, 
+        <p className='icon2'>Authenticate Image: <br/><br/>Upload an image from your computer for facial authentication. If it is in the database, 
           you will be authenticated!
         </p>
 
         <p className='icon2'>Upload to Database: <br/><br/>In order to successfully authenticate a face, an image of the same face must be present in the 
-          database. This option allows you to upload a facial image directly to the database for future authentication!.
+          database. Upload a facial image directly to the database in the format <b className='bold'>'Firstname_Lastname.filetype'</b><br/> for future authentication!
         </p>
       </div>
-      <h2 className='title'> Rekog App</h2>
+      <h2 className='title'> AWS Facial Rekognition Application</h2>
       <h4 style={{color: 'white'}}>Welcome, please read the info page before using the application. Happy authenticating!</h4>
       <form onSubmit={sendImage}>
         <input type='file' name='image' onChange={handleImageChange} />
