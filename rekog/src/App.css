@@ -1,5 +1,5 @@
 * {
-  background-color: rgb(22,69,85);
+  background-color: rgb(30,49,55);
 }
 
 .App{
@@ -9,13 +9,13 @@
 
 .title{
   color: white;
-  font-size: 40px;
+  font-size: 30px;
 }
 .message {
   color: white; /* Set the default color to white */
 }
 .success{
-  background-color: rgb(34,125,155);
+  background-color: rgb(22,69,85);
   padding: 1rem;
   color: rgb(42,187,127);
   font-weight: 600;
@@ -25,7 +25,7 @@
   margin-bottom: 10px;
 }
 .failure{
-  background-color: rgb(34,125,155);
+  background-color: rgb(22,69,85);
   padding: 1rem;
   color: rgb(241,91,80);
   margin: 0 500px;
@@ -33,13 +33,28 @@
   margin-top: 20px;
   margin-bottom: 10px;
 }
-
 .button{
   height: 30px;
   border-radius: 5px;
   color: white;
-  background-color: rgb(205,81,157);
-}
+  background-color: rgb(23, 188, 119);
+  margin-bottom: 10px;
+  transition: .3s ease-out;}
+.button:hover{
+  background-color: rgb(34,160,107);
+  transition: .3s ease;}
+.button2{
+  height: 30px;
+  border-radius: 5px;
+  color: white;
+  background-color: rgb(32, 147, 185);
+  transition: .3s ease-out;}
+.button2:hover{
+  background-color: rgb(21, 119, 151);
+  transition: .3s ease;}
+
+
+
 
 .add{
   background-color: rgb(42,187,127);
@@ -50,4 +65,28 @@
 
 .image{
   border-radius: 10px; 
+}
+
+.icon-container {
+  position: absolute;
+  top: 10px; /* Adjust the top position as needed */
+  right: 10px; /* Adjust the left position as needed */
+}
+
+.icon {
+  width: 50px; /* Adjust the width of the icon as needed */
+  height: 50px; /* Adjust the height of the icon as needed */
+  padding-top: 1rem;
+}
+
+.icon2 {
+  width: 250px; /* Adjust the width of the icon as needed */
+  height: auto; /* Adjust the height of the icon as needed */
+  color: white;
+  text-align: left;
+  border: 2px solid rgb(22,69,85);
+  border-radius: 7px;
+  background-color: rgb(22,69,85);
+  padding: 5px;
+  margin-top: 5px;
 }
